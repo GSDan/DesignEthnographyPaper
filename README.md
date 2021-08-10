@@ -1,4 +1,4 @@
-# We’ll do it Live! Surfacing Stakeholder Values through Design Ethnographywith Live, For-Profit Infrastructure
+# We’ll do it Live! Surfacing Stakeholder Values through Design Ethnography with Live, For-Profit Infrastructure
 
 *Author names*
 
