@@ -1,42 +1,157 @@
 \section{Findings}
 
-These engagements resulted in the conception and evolution of a design of an IVR system, which would be integrated into PC's existing infrastructure to support the domestic workers in interacting with the digital platform without requiring them to use new physical devices. 
-
-\subsection{Initial Requirements Gathering}
-
-\subsection{Design Iteration 1}
-
 \begin{figure*}
   \centering
-  \includegraphics[width=\columnwidth]{images/ivr_01_ordercall.png}
-  \caption{PC2's initial PowerPoint design of the `order calls' stage, which would dial domestic workers with information about a job, and ask them for an estimated time of arrival.}~\label{fig:OrderCalls}
+  \includesvg[width=1.5\columnwidth]{images/ht_system.svg}
+  \caption{The designed workflow for a \PC{} order. The client requests a worker through the smartphone app (1). \PC{}'s algorithm chooses a suitable worker (2) and rings them to see if they will take the order (3). If so, the client is called by customer support, to ensure the order is genuine (4). If it is, the worker receives a confirmation call from the system (5) and is asked to give an ETA and leave towards the client's house. During the journey, the worker is called up three times to get an updated ETA (6). Upon arrival, the worker calls the system to log the work as having started (7) and completes the job (8). After finishing, the worker calls into the system to log the work as finished (9). At any time, the worker can call the system to get information about a current job or their wages, get help from the \PC{} office or emergency services, or to contact the client (X). }~\label{fig:WorkFlow}
 \end{figure*}
 
-\begin{figure*}
-  \centering
-  \includegraphics[width=\columnwidth]{images/ivr_01_tracking.png}
-  \caption{The initial design of the `tracking calls' stage, describing a confirmation call and three `tracking' calls to be made to domestic workers, intended to check on their progress as they travel to their client's house.}~\label{fig:TrackingCalls}
-\end{figure*}
+The final design for the system's workflow, as created by \PCTwo{} with feedback from \NGOOne{} and the research team, is described in Figure \ref{fig:WorkFlow}. This section details each of the core stages of this process, and the reasoning for them as given by the participating stakeholders from \PC{} and \NGO{} during our meetings.
 
-\begin{figure*}
-  \centering
-  \includegraphics[width=\columnwidth]{images/ivr_01_inbound.png}
-  \caption{The initial design of the way the IVR system would handle inbound calls from domestic workers. The menu presented to the workers varies depending on the worker's current work state within the system.}~\label{fig:InboundCalls}
-\end{figure*}
+\subsection{Choosing a Worker}
 
-Following our first meeting, PC2 shared with us an initial design of the system in Microsoft PowerPoint. This design detailed the `IVR flow': the menus, information and options available to the domestic workers as they interact with the system over the phone. The PowerPoint consisted of three slides, each describing a different type of phone call that the system would make or receive:
+After a job request was received from a client, \PC{} needed to assign a domestic worker to fulfill it. In the designed IVR system, the process of deciding the most suitable worker was handled by an algorithm (Figure \ref{fig:WorkFlow}.2), and the chosen worker would receive an automated call offering them the job (Figure \ref{fig:WorkFlow}.3). After agreeing to take the job, the worker is asked to choose their estimated time of arrival (ETA) from multiple options, and told to wait for a confirmation phone call before leaving towards the client's house. Prior to this automated design, this was handled by the local guides, who would be given details of the job and asked to call and assign a suitable worker to it. However, the local guides' choices were not always in-line with PC's priorities:
 
-\begin{itemize}
-    \item The first slide (Fig \ref{fig:OrderCalls}) described the `order calls' stage: outbound calls made by the system to the workers, offering them a job and giving them some basic information about the client's location. If they accepted, the worker would then be asked to give an estimation of how long it would take for them to reach the client (an `ETA', with options of 30 minutes, one hour, or longer than one hour).
-    \item The second slide (Fig \ref{fig:TrackingCalls}) detailed the `confirmation call' and three `tracking calls' which would the worker would receive from the system. The tracking calls ask the worker for updated ETA, as well as giving them the option to call PC's office or the client. These tracking calls would  be made at intervals of ten minutes after the worker received the confirmation call. 
-    \item The third slide (Fig \ref{fig:InboundCalls}) described how inbound calls made by the domestic worker dialling into the system would be handled. The design offered one of three different menus to the worker depending on their current `state': if they were on their way to a client's house they would get options to hear the address details, dial the client, dial the PC office, or log the work as having started; if they were at a house on a job they would get the option of logging the work as having finished, reporting safeguarding issues, contact the emergency services or call the office; or if they didn't currently have a job assigned the could leave a rating for their last client, get information about their earnings, or contact the office.
-\end{itemize}
+\begin{displayquote}
+\textbf{\PCTwo{}}: "When it was local guides, our service often saw failure when trying to get a domestic worker. It was not always within one or two kilometres: sometimes they always wanted workers to get to work, whether it is 1, 2 or even 3 kilometres. Or sometimes they used the logic that `\textit{I have to distribute the work equally---I have sent a domestic worker to a job in the morning, now, even though this new job is near that worker’s house, I will send another worker to distribute it equally.}’ But now, in our system you cannot do that."
+\end{displayquote}
 
-In response to this design, we responded with a document containing a number of questions and concerns we had about the design to be addressed in the next meeting. As well as technical points of interest (e.g. `\textit{What happens if a worker's call disconnects before they give their ETA?}'), these included queries about the underlying system (e.g. `\textit{How are workers currently/previously chosen?}'; `\textit{Do the workers' ratings of the clients get used? If so, how?}'; `\textit{What's the reason for calling the domestic workers before confirming the job?}'; `\textit{How long can a worker expect to wait for the confirmation call?}'). We also highlighted three major concerns: that the tracking calls don't make allowances for distinguishing between actual travel time and when workers estimate they will arrive (`\textit{The estimated time might not be the same as travel time---the worker might have to finish house work, or organise childcare before leaving the home}'); that the frequent tracking calls are likely to be intrusive (`\textit{It’s also possible that workers will stop answering these tracking calls---being called every few minutes is likely to be annoying if they are travelling/finishing up other tasks.}'); and that the third slide's reliance on dynamic `states' may prevent the workers from being able to easily and reliably memorise the interface (`\textit{May be easier to present the same options each time (even if redundant/non-functional) for the sake of consistency, so that the user knows exactly what the options will be every time they call. This would probably also be simpler to develop and less prone to bugs.}') 
+The \PC{} and \NGO{} stakeholders were also aware that this system was open to potential manipulation and exploitation by the local guides:
+
+\begin{displayquote}
+\textbf{\PCOne{}}: "When we had local guides in place, they assigned domestic workers manually, so there was always an option to manipulate: ‘\textit{Oh, I like this domestic worker, I want to give her the job.}’ [...] We provide the local guide with a list of ten domestic workers ordered based on the requirements, like from one to ten---the local guide can still assign the tenth domestic worker because it’s a manual process."
+\end{displayquote}
+
+Instead of relying on human decision making, the new system uses an algorithm which prioritised the workers based on their location, user rating, and system rating:
+
+\begin{displayquote}
+\textbf{\PCTwo{}}: "Firstly our app detects the domestic workers within a 1km radius of the customer’s home, and [then it takes into account] the rating by our users. [...] The next rating is the `system rating'. This is updated based on the responses from the domestic worker to offers of work: if she had been rejecting orders each and every time it will develop a bad rating for her. For new domestic workers---you raised this concern---they start with an initial rating of 100. If she performs well, it will be around that 100, 98 or 97… if she performs bad it will be dropping. This way, new domestic workers will always receive preference to be offered work."
+\end{displayquote}
+
+After a suggestion from \NGOOne{}, this was adapted to also take into account historical ratings of the client from workers: 
+
+\begin{displayquote}
+\textbf{\NGOOne{}}: "As [\PCTwo{}] mentioned, one rating will be from the employer’s side---if she gets five [stars] she’ll be called again. We are also taking ratings from the employee level: how she feels working there. Are you going to consider this? Because it might be that she might not be comfortable with working there---it might be that I’m a bad person, and give her five stars to get her again, but she’s not comfortable with me. So we need to..."
+
+\textbf{\PCTwo{}}: "Both sides of the coin. Yes. We should make it the first point: if the domestic worker does not want to go there, we should not consider her..."
+\end{displayquote}
+
+During the `human IVR' deployment, \PCTwo{} described the prototype's decision-making process as being `half human brain, half computer':
+
+\begin{displayquote}
+\textbf{\PCTwo{}}: "It was like a full human brain before---our [local guides] were using their brain to find a domestic worker, with slightly different logic. But now it is one human brain and one computer: the computer is receiving the order, is finding the domestic worker. The other human brain is just interacting after that---‘\textit{Ok, you are the chosen one}’---they’re getting a list of five or ten. They do not even know these domestic workers. I think it will just be the one computer when it is IVR, without the human brain. We are almost half way, or more than half way."
+\end{displayquote}
+
+However, the domestic workers reacted negatively to this new process, finding it limiting and uncomfortable to talk to a scripted stranger:
+
+\begin{displayquote}
+\textbf{\PCTwo{}}: "We have had some feedback. It was easier for them to interact with the `complete human brain’: they could interact in an unlimited way, but now it’s a limited logic, and they want to see the face of the customer support---they have seen the face of their local guide. So they used to feel at ease, but now they feel like they get a call from a random place, and they forget the order. Sometimes they even complain: ‘\textit{we can’t understand their language.}' It's not a problem of accent or language, it’s about thinking ‘\textit{I do not know him, so I do not get his message.}’"
+\end{displayquote}
+
+When the system calls the prioritised worker, it gives a basic overview of the job: the client's name, the area they live in, how long the job will take, and how much they will get paid. The research team suggested that the worker could also benefit from being informed of the client's rating by other domestic workers. \PC{} were initially hesitant, noting that the rating might confuse the workers, and opining that decisions about which clients should be served should be made by \PC{} in the back-end: 
+
+\begin{displayquote}
+\textbf{\PCTwo{}}: "Right, but I’m worried that the domestic worker might not understand the rating system to be able to assess the client. So I think we need to do the screening from the back end."
+\end{displayquote}
+
+Despite appearing to agree and them earlier noting that workers' wants should be considered, the feature didn't make it into the final design:
+
+\begin{displayquote}
+\textbf{R2}: "It doesn't have to be a number: it could be a word, like ‘\textit{this client has been rated excellent}’."
+
+\textbf{\PCTwo{}}: "Right. We could use a word, we could do that."
+\end{displayquote}
 
 
+\subsubsection{Confirming the Job}
 
-\subsection{Design Iteration 2}
+Once a worker has been found, one of PC's customer support agents then calls the client to confirm that the job is legitimate (Figure \ref{fig:WorkFlow}.4): \PCTwo{} noted that clients frequently create jobs within the smartphone app to test that the system works, and so these test jobs need to be identified before telling the assigned worker to leave for their house. They specified that this should even happen for repeat clients, not just ones new to the application. When we asked why this confirmation is made after first finding a worker, they noted that they didn't want to confirm with a legitimate customer only to then cancel the job if they couldn't find a suitable worker: 
 
-\subsection{Wizard of Oz Prototype}
+\begin{displayquote}
+\textbf{\PCTwo{}}: "We try to find a domestic worker for the required job first, and then we go to the user to confirm the order, because [...] we do not want to call the user without first confirming that we have a domestic worker in place to serve him. It will make him dissatisfied---we have called the user but then we won’t be able to provide a domestic worker. So, we want to make sure that we have a domestic worker in place so that if he or she wants to take the order, we can provide it."
+\end{displayquote}
 
+After confirming the job is legitimate, the worker will then receive a second automated `confirmation call' from the system (Figure \ref{fig:WorkFlow}.5). As a condition of their partnership, \NGO{} required that this confirmation call include a message outlining precautions which would assist in the worker's safety:
+
+\begin{displayquote}
+\textbf{\NGOOne{}}: "Know that [\PC{}] is practicing a very good thing with a few conditions: when the domestic worker gets the confirmation, she will be informed [to only work] if  there is a woman in the workplace, if she feels safe, and to always wear a mask. So three instructions will be there, so that we can take three actions to make her safer."
+\end{displayquote}
+
+For the `Human IVR' prototype, these warnings had been formalised into `checkpoints'---standards which the worker had been instructed to be sure had been met, otherwise they were instructed to call \PC{} to cancel the order and return home:
+
+\begin{displayquote}
+\textbf{\PCTwo{}}: "We have several ‘checkpoints’ when serving the order: whether it is a family house, whether a female member is present in the house while the worker will be working."
+\end{displayquote}
+
+\subsubsection{Tracking the Worker}
+
+While travelling to the client's house, the worker receives up to three automated `tracking calls' (Figure \ref{fig:WorkFlow}.6): the first is made 15 minutes after they received the confirmation call, and asks if the worker has left yet; another call is made after two thirds of the given ETA has expired, and asks for an updated ETA; and the final call is made 10 minutes after the ETA if the worker has not yet logged starting work. As the workers are likely to be departing from their own house, we queried if it's possible that they are likely to be in the middle of other tasks when orders come through, such as housework, cooking or childcare:
+
+\begin{displayquote}
+\textbf{\PCTwo{}}: "In our training, we’ll be telling them to ‘\textit{please be ready when you get an order call, and set out as soon as you get the confirmation call}’. So it’s our expectation that she’ll be ready and waiting for the confirmation call to get out. [...] We are training them to be done with all of their work from their end in the morning, and wait for the job all day long, we will be giving you one after one."
+\end{displayquote}
+
+We raised a concern that these calls are likely to feel intrusive, and asked for clarification on the intention behind them. \PCTwo{} claimed they were necessary in order to `push' the workers to get to the client on time: 
+
+\begin{displayquote}
+\textbf{\PCTwo{}}: If they have received an order we have to keep pushing them if she is already on the way, because we have to maintain a certain time---on the user’s side we have already committed them at the start of the order that it will take 30 minutes, 60 minutes, based on the estimation of the domestic worker. So we don’t need to make this [time] any longer than this, so we keep pushing them if they are already on the way."
+\end{displayquote}
+
+\PCOne{} seemed to believe that the number of calls was necessary, and might even need to be increased for the final design:
+
+\begin{displayquote}
+\textbf{\PCOne{}}: "When we test the system we might find that we need more tracking calls, maybe we don’t need this many, even."
+\end{displayquote}
+
+After implementing the `Human IVR' model, \PC{} received negative feedback from their workers about the tracking calls:
+
+\begin{displayquote}
+\textbf{\PCOne{}}: "Maybe we need to call less in the IVR, because a lot of calls [hamper] the workers: maybe they’re on their way, on the bus, they really don’t want to receive a lot of calls. [...] We don’t need to call that much. I mean, without calling the domestic workers, after half of the time, almost all of them went to the customer’s house. So I think we have three tracking calls on the [IVR design] flow, I think it can be less. Maybe one."
+\end{displayquote}
+
+Despite the workers getting to clients on time without all three tracking calls, \PCTwo{} was sceptical that this success would carry over to the full IVR system:
+
+\begin{displayquote}
+\textbf{\PCTwo{}}: "We know you were not on the side of the tracking calls, we have three tracking calls in the IVR plan, but currently we only have one tracking call in the current system. [...] Because we still have the human brain interacting here, ensuring that the domestic worker is [on the call], talking. So, it’s almost 100\% that they are going out to the client’s house in proper time. But I’m worried that in the case of the IVR, it will be a little lower, or much lower. It may be that we need at least one tracking call at the start [of the journey]---whether they have gotten out or not."
+\end{displayquote}
+
+\subsubsection{Calls from the Worker}
+
+Once at the client's house, workers log themselves as having started (Figure \ref{fig:WorkFlow}.7) and finished (Figure \ref{fig:WorkFlow}.8) the work by calling into the service. Previously, this had been the responsibility of the client, who would do it through the app. \NGOOne{} noted that clients had been known to abuse this power to avoid paying workers for their actual time worked, and that the new system is designed in response:
+
+\begin{displayquote}
+\textbf{\NGOOne{}}: "Sometimes the customers are very tricky---he will not say anything [about the time being over] because she is busy doing something. So after finishing the job, the customer will get an SMS saying that she has worked her minutes, and any longer she would get paid extra taka. And after another 5 minutes, the worker will get a call saying `\textit{you have completed your work hours, you will get this amount}.’"
+\end{displayquote}
+
+At any time, including while at a client's house, workers were able to get contact either the \PC{} office or emergency services for help (Figure \ref{fig:WorkFlow}.X). However, it appeared that the aforementioned pre-work `checkpoints' meant that after starting work, very few calls came from workers complaining about clients:
+
+\begin{displayquote}
+\textbf{\PCOne{}}: "We don’t serve bachelor houses, and family houses need to have a female member, so our domestic workers are instructed to check if there is a female member or not. What happens if they see the house doesn't have a female member? They come back. We have a status called `maid return’. It happens, maybe every day two or three times: where they don’t go in the customer's house for not having a female member. But after [starting] serving to the customers---we really don’t get any calls about safety issues. It’s almost 0\%."
+\end{displayquote}
+
+After the job has been marked as completed, the worker is given the option of leaving feedback about the client. \NGOOne{} was keen that the workers be given multiple ways of giving feedback, as well as assurances of confidentiality:
+
+\begin{displayquote}
+\textbf{\NGOOne{}}: "Considering the feedback mechanism: [...] she can leave a rating, she can leave a voice call, but there should be a voice which says ‘\textit{what you are sharing here will be fully confidential and will only be used for official purposes}.’ So that she can raise her voice herself."
+\end{displayquote}
+
+However, for the `Human IVR' phase, workers' feedback submissions were not being fully taken into account by the algorithm:
+
+\begin{displayquote}
+\textbf{R1}: "One of the last times we talked, we talked about how workers could rate, or even blacklist, clients. Is that in place?"
+
+\textbf{\PCTwo{}}: "They can actually---they can blacklist the client by calling us."
+
+\textbf{R1}: "And does the algorithm take that into account---does the dashboard interface take into account that the worker has blacklisted that client?"
+
+\textbf{\PCTwo{}}: "No, not yet. But so that the client is getting the domestic worker that they want, we have a simple technique here---we are encouraging our clients to give 5 stars to his or her preferable domestic worker, and when a worker gets a five star from the client, she will be in first place [of the recommendation algorithm]. But it is not in action that the domestic worker will not get the same [client] if she doesn't want to, through a phone call, so we need to work on that."
+\end{displayquote}
+
+As well as get help from the company office or emergency services, the IVR design gave workers the ability to get in contact with the client (to allow workers to say they've arrived outside the property, or to ask for more specific directions). The IVR system acts as an intermediary, so that neither party can see the other's phone number---the original system instead gave clients the workers' phone number inside of the app. When we raised the potential safety and privacy issues regarding giving clients access to workers' phone numbers, PC1 and \PCOne{} claimed that it hadn't been an issue and weren't concerned. However, they were interested in implementing this intermediary system as it could potentially lower the worker `bounce rate': when clients use the workers' details to hire them directly, outside of the \PC{} platform.
+
+
+TODO
+
+\begin{displayquote}
+\textbf{\PCOne{}}: Yes, we always have a shortage of domestic workers. [laughs] That’s why we started working with Oxfam - they promise us the system to train domestic workers, but beside this, we always have a shortage of domestic workers. In this current COVID time, they’ve started working with us - they’re more willing to join HelloTask. But other times, they don’t work with us - the whole system is a hassle for them. They’re very good [and professional?], so why would they work with HelloTask?
+\end{displayquote}
