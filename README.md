@@ -1,5 +1,5 @@
-# We’ll do it Live! Surfacing Stakeholder Values through Design Ethnography with Live, For-Profit Infrastructure
+# Critically Engaging with Embedded Values through Constrained Technology Design
 
-*Author names*
+Dan Richardson, Bronwyn Cumbo, Tom Bartindale, Delvin Varghese, Manika Saha, Pratyasha Saha, Syed Ishtiaque Ahmed, Gillian Oliver, Patrick Olivier
 
-Abstract
+The rise of gig-economy platforms has highlighted the impact platform and algorithm design can have upon workers’ experiences. This paper reports on an extended series of collaborative design engagements with a private company and an international NGO during the production of an IVR component for a gig-economy platform. We present the findings of a design ethnography undertaken during this process and discuss how design decisions reflect how each party’s values, motivations and assumptions are embedded within the final technology. We argue that there exists a need for simple methods to assist designers and engineers to surface and critically engage with the potentially disparate values, priorities and assumptions held by themselves and system stakeholders, and contribute suggestions for how this can be done during the production of real-world systems through the application of constrained design as a values lever.
