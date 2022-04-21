@@ -3,24 +3,22 @@
 % \documentclass[acmsmall]{acmart}
 
 %%%% Large single column format, used for IMWUT, JOCCH, PACMPL, POMACS, TAP, PACMHCI
-\documentclass[acmlarge,screen]{acmart}
+%\documentclass[acmlarge,screen]{acmart}
 
 %%%% Large double column format, used for TOG
 %\documentclass[acmtog, authorversion]{acmart}
 
 %%%% Generic manuscript mode, required for submission
 %%%% and peer review
-%\documentclass[manuscript,screen,review, acmconf]{acmart}
+\documentclass[sigconf]{acmart}
 %\documentclass[sigconf,anonymous]{acmart}
 
 \usepackage{svg}
 \usepackage{csquotes}
 
 \newcommand{\NGO}{\textit{NGO}}
-\newcommand{\NGOOne}{NGO1}
 \newcommand{\PC}{\textit{GigCo}}
-\newcommand{\PCOne}{GigCo1}
-\newcommand{\PCTwo}{GigCo2}
+\newcommand{\SRP}{OCP}
 
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -28,14 +26,13 @@
 %% the commands and values with those provided to you when you
 %% complete the rights form.
 \setcopyright{acmcopyright}
-\copyrightyear{2018}
-\acmYear{2018}
+\copyrightyear{2022}
+\acmYear{2022}
 \acmDOI{10.1145/1122445.1122456}
 
 %% These commands are for a PROCEEDINGS abstract or paper.
-\acmConference[CHI'22]{CHI 2022}{April 30--May 06, 2022}{New Orleans, LA}
-\acmBooktitle{ACM CHI 2022 Conference on Human Factors in Computing Systems,
-  April 30--May 06, 2022, New Orleans, LA}
+\acmConference[DIS'22]{DIS 2022}{June 13--June 17, 2022}{Online conference}
+\acmBooktitle{DIS '22: Proceedings of the 2022 ACM Designing Interactive Systems Conference}
 \acmPrice{15.00}
 \acmISBN{978-1-4503-XXXX-X/18/06}
 
@@ -74,37 +71,68 @@
 %% Of note is the shared affiliation of the first two authors, and the
 %% "authornote" and "authornotemark" commands
 %% used to denote shared contribution to the research.
-\author{Anonymous for review}
+\author{Dan Richardson}
+\email{dan.richardson@monash.edu}
 \affiliation{%
-  \institution{Anon}
-  \streetaddress{Anon}
-  \city{Anon}
-  \country{Anon}}
-\email{Anon@Anon.org}
+  \institution{Monash University}
+  \city{Melbourne}
+  \country{Australia}}
+  
+\author{Bronwyn J. Cumbo}
+\email{bronwyn.cumbo@monash.edu}
+\affiliation{%
+  \institution{Monash University}
+  \city{Melbourne}
+  \country{Australia}}
 
-\author{Anonymous for review}
+\author{Tom Bartindale}
+\email{tom.bartindale@monash.edu}
 \affiliation{%
-  \institution{Anon}
-  \streetaddress{Anon}
-  \city{Anon}
-  \country{Anon}}
-\email{Anon@Anon.org}
+  \institution{Monash University}
+  \city{Melbourne}
+  \country{Australia}}
+  
+\author{Delvin Varghese}
+\email{delvin.varghese@monash.edu}
+\affiliation{%
+  \institution{Monash University}
+  \city{Melbourne}
+  \country{Australia}}
+  
+\author{Manika Saha}
+\email{manika.saha@monash.edu}
+\affiliation{%
+  \institution{Monash University}
+  \city{Melbourne}
+  \country{Australia}}
 
-\author{Anonymous for review}
+\author{Pratyasha Saha}
+\email{pratyasha.saha1195@gmail.com}
 \affiliation{%
-  \institution{Anon}
-  \streetaddress{Anon}
-  \city{Anon}
-  \country{Anon}}
-\email{Anon@Anon.org}
-
-\author{Anonymous for review}
+  \institution{University of Dhaka}
+  \city{Dhaka}
+  \country{Bangladesh}}
+  
+\author{Syed Ishtiaque Ahmed}
+\email{ishtiaque@cs.toronto.edu}
 \affiliation{%
-  \institution{Anon}
-  \streetaddress{Anon}
-  \city{Anon}
-  \country{Anon}}
-\email{Anon@Anon.org}
+  \institution{University of Toronto}
+  \city{Toronto}
+  \country{Canada}}
+  
+\author{Gillian C. Oliver}
+\email{gillian.oliver@monash.edu}
+\affiliation{%
+  \institution{Monash University}
+  \city{Melbourne}
+  \country{Australia}}
+  
+\author{Patrick Olivier}
+\email{patrick.olivier@monash.edu}
+\affiliation{%
+  \institution{Monash University}
+  \city{Melbourne}
+  \country{Australia}}
 
 %%
 %% By default, the full list of authors will be used in the page
@@ -112,13 +140,13 @@
 %% other information printed in the page headers. This command allows
 %% the author to define a more concise list
 %% of authors' names for this purpose.
-\renewcommand{\shortauthors}{Anon et al.}
+\renewcommand{\shortauthors}{Richardson et al.}
 
 %%
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-The rise of gig-economy platforms has highlighted the impact platform and algorithm design can have upon workers’ experiences. This paper reports on an extended series of collaborative design engagements with a private company and an international NGO during the production of an IVR component for a gig-economy platform. We present the findings of a design ethnography undertaken during this process, and discuss how design decisions reflect how each party’s values, motivations and assumptions are embedded within the final technology. We argue that there exists a need for simple methods to assist designers and engineers to surface and critically engage with the potentially disparate values, priorities and assumptions held by themselves and system stakeholders. Based off of our findings, we contribute suggestions for how this can be done during the production of real-world systems through the application of constrained design as a values lever.
+The rise of gig economy platforms has highlighted the impact platform and algorithm design can have upon workers’ experiences. This paper reports on an extended series of collaborative design engagements with a private company and an international non-government organisation during the production of an Interactive Voice Response component for a gig economy platform. We present the findings of a design ethnography undertaken during this process, and discuss how design decisions reflect how each party’s values, motivations and assumptions are embedded within the final technology. There exists a need for simple methods to assist practitioners to surface and critically engage with the disparate values, priorities and assumptions held by the system's stakeholders. We demonstrate that this can be done during the production of real-world systems through the application of constrained design as a values lever, and discuss how constraint-based values levers can support critical reflection, even in resource-constrained commercial development contexts.
 \end{abstract}
 
 %%
@@ -127,38 +155,26 @@ The rise of gig-economy platforms has highlighted the impact platform and algori
 %%
 \begin{CCSXML}
 <ccs2012>
- <concept>
-  <concept_id>10010520.10010553.10010562</concept_id>
-  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
-  <concept_significance>500</concept_significance>
- </concept>
- <concept>
-  <concept_id>10010520.10010575.10010755</concept_id>
-  <concept_desc>Computer systems organization~Redundancy</concept_desc>
-  <concept_significance>300</concept_significance>
- </concept>
- <concept>
-  <concept_id>10010520.10010553.10010554</concept_id>
-  <concept_desc>Computer systems organization~Robotics</concept_desc>
-  <concept_significance>100</concept_significance>
- </concept>
- <concept>
-  <concept_id>10003033.10003083.10003095</concept_id>
-  <concept_desc>Networks~Network reliability</concept_desc>
-  <concept_significance>100</concept_significance>
- </concept>
-</ccs2012>
+   <concept>
+       <concept_id>10003120.10003121.10003122</concept_id>
+       <concept_desc>Human-centered computing~HCI design and evaluation methods</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10003120.10003123.10010860.10010859</concept_id>
+       <concept_desc>Human-centered computing~User centered design</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+ </ccs2012>
 \end{CCSXML}
 
-\ccsdesc[500]{Computer systems organization~Embedded systems}
-\ccsdesc[300]{Computer systems organization~Redundancy}
-\ccsdesc{Computer systems organization~Robotics}
-\ccsdesc[100]{Networks~Network reliability}
+\ccsdesc[500]{Human-centered computing~HCI design and evaluation methods}
+\ccsdesc[500]{Human-centered computing~User centered design}
 
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{design ethnography, digital civics}
+\keywords{values in design, design ethnography, values levers, digital civics}
 
 
 %%
@@ -179,7 +195,7 @@ The rise of gig-economy platforms has highlighted the impact platform and algori
 %% identification of the section in the article metadata, and the
 %% consistent spelling of the heading.
 \begin{acks}
-Anonymised for review
+This research was a part of the Participatory Research and Ownership with Technology, Information and Change (PROTIC) II project, funded by the Empowerment Charitable Trust. We thank our participants for making this project possible.
 \end{acks}
 
 %%
